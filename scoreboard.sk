@@ -1,0 +1,47 @@
+every 5 second:
+    loop all players:
+        wipe loop-player's sidebar
+        set name of sidebar of loop-player to "&b&l박철덕서버 | alt9 MC"
+#        set score "WEBSITE &6alt9.co.kr" in sidebar of loop-player to 7
+        set score "================" in sidebar of loop-player to 6
+        set score "&b▶&6&l직업" in sidebar of loop-player to 5
+
+        if {RPG직업::%loop-player's uuid%} is "슈퍼소드":
+            set {_RPG직업} to "&b슈퍼소드&e(&7검사&e)"
+        else if {RPG직업::%loop-player's uuid%} is "최잘생":
+            set {_RPG직업} to "&b최잘생&e(&7수학마법사&e)"
+        else if {RPG직업::%loop-player's uuid%} is "박교장":
+            set {_RPG직업} to "&b박교장&e(&7스쿨 마법사&e)"
+        else if {RPG직업::%loop-player's uuid%} is "원창한의원":
+            set {_RPG직업} to "&b원창맨&e(&7힐러&e)"
+        else:
+            set {_RPG직업} to "무직"
+        
+        set score "  &7-%{_RPG직업}%" in sidebar of loop-player to 4
+        set score " " in sidebar of loop-player to 3
+        set score "&b▶&6&l돈" in sidebar of loop-player to 2
+        set score "  &7-&f%loop-player's money%" in sidebar of loop-player to 1
+        set score "  " in sidebar of loop-player to 0
+#주석처리        set score "&f마나 &b: &9%{mp::%loop-player's uuid%}% &f/ &9%{maxmp::%loop-player's uuid%}%" in sidebar of loop-player to -2
+        set score "   " in sidebar of loop-player to -3
+
+        #알림창
+        if {sp::%loop-player's uuid%} >= 1:
+            set score "&7⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛  " in sidebar of loop-player to -4
+            set score "&7⬛&f⬅&f사용하지 않은 &eSP&f가 있습니다!&7⬛" in sidebar of loop-player to -5
+            set score "&7⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛" in sidebar of loop-player to -6
+
+        set score "    " in sidebar of loop-player to -7
+        set score "     &f>&6MMORPG&e서버&f<" in sidebar of loop-player to -8
+        set score "     &f현재 &a%number of all players%&f명 접속중!" in sidebar of loop-player to -9
+
+#스코어보드
+#
+#액션바
+        send action bar "&f마나 &b: &9%{mp::%loop-player's uuid%}% &f/ &9%{maxmp::%loop-player's uuid%}%" to loop-player
+        wait for 1 second
+        send action bar "&f마나 &b: &9%{mp::%loop-player's uuid%}% &f/ &9%{maxmp::%loop-player's uuid%}%" to loop-player
+        wait for 1 second
+        send action bar "&f마나 &b: &9%{mp::%loop-player's uuid%}% &f/ &9%{maxmp::%loop-player's uuid%}%" to loop-player
+        wait for 1 second
+        send action bar "&f마나 &b: &9%{mp::%loop-player's uuid%}% &f/ &9%{maxmp::%loop-player's uuid%}%" to loop-player

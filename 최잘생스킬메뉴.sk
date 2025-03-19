@@ -1,0 +1,466 @@
+command skillmenu최잘생:
+    trigger:
+        #최잘생
+        if {RPG직업::%player's uuid%} is "최잘생":
+            set {_skillmenu최잘생::%player%} to chest inventory with 6 rows named "skillmenu최잘생"
+            set slot 1 of {_skillmenu최잘생::%player%} to nether star named "기본스킬"
+            set slot 2 of {_skillmenu최잘생::%player%} to nether star named "2차 스킬"
+
+
+
+
+            #
+            #액스칼리버(레벨에 따라 숫자만 바뀌는 스킬)
+            if {RPG최잘생::액스칼리버::%player's uuid%} is number:
+                set {_imshineedmp::액스칼리버::%player%} to {RPG최잘생::액스칼리버::%player's uuid%}*-1
+                set {needmp::최잘생::액스칼리버::%player's uuid%} to 11 + {_imshineedmp::액스칼리버::%player%}
+                set {범위::최잘생::액스칼리버::%player's uuid%} to 0 + {RPG최잘생::액스칼리버::%player's uuid%}
+
+            if {RPG최잘생::액스칼리버::%player's uuid%} is set:
+                set slot 19 of {_skillmenu최잘생::%player%} to oak log named "&b액스칼리버" with lore "&f분수를 한방에 마스터하는 비장의 길! 오직 최선명만이 가능하다! 특정범위안에있는 몬스터에게 데미지를 준다" and "쿨타임 2초" and "&9MP %{needmp::최잘생::액스칼리버::%player's uuid%}%소모" and "&6범위 : %{범위::최잘생::액스칼리버::%player's uuid%}%" and "현재레벨 : %{RPG최잘생::액스칼리버::%player's uuid%}%" and "&b➡&f레벨 증가할때마다 범위 1 씩증가(기본 1)" and "&b➡&f레벨 증가할때마다 필요마나 1 씩감소" and "" and "&6클릭하고 움직여서 인벤으로 가져오기"
+            else if {RPG최잘생::액스칼리버::%player's uuid%} is not set:
+                set slot 19 of {_skillmenu최잘생::%player%} to oak log named "&8액스칼리버" with lore "???"
+
+            set slot 20 of {_skillmenu최잘생::%player%} to green stained glass pane named "액스칼리버 업그레이드" with lore "가능이라 써있다면 눌러서 획득하세요!" and ""
+            #액스칼리버(레벨에 따라 숫자만 바뀌는 스킬)
+            #
+
+            #
+            #먼작귀 슬로우(일반스킬)
+            if {RPG최잘생::먼작귀슬로우::%player's uuid%} is number:
+                set {지속시간::최잘생::먼작귀슬로우::%player's uuid%} to 3 + {RPG최잘생::먼작귀슬로우::%player's uuid%}
+            else:
+                set {지속시간::최잘생::먼작귀슬로우::%player's uuid%} to 3
+
+            if {RPG최잘생::먼작귀슬로우::%player's uuid%} is set:
+                set slot 28 of {_skillmenu최잘생::%player%} to feather named "&b먼작귀슬로우" with lore "&f누르면 자신에게 느린낙하가 걸린다. 더블점프와 함께 쓸 수 있다" and "쿨타임 없음" and "&9MP 2 소모" and "&6지속시간 : %{지속시간::최잘생::먼작귀슬로우::%player's uuid%}%" and "현재레벨 : %{RPG최잘생::먼작귀슬로우::%player's uuid%}%" and "&b➡&f레벨 지속시간 1 씩추가" and "" and "&6클릭하고 움직여서 인벤으로 가져오기"
+            else if {RPG최잘생::먼작귀슬로우::%player's uuid%} is not set:
+                set slot 28 of {_skillmenu최잘생::%player%} to feather named "&8먼작귀슬로우" with lore "???"
+
+            set slot 29 of {_skillmenu최잘생::%player%} to green stained glass pane named "먼작귀슬로우 업그레이드" with lore "가능이라 써있다면 눌러서 획득하세요!" and ""
+            #먼작귀 슬로우(일반스킬)
+            #
+
+            #
+            #마나증가(걍 기본)
+
+            if {RPG최잘생::마나증가::%player's uuid%} is not set:
+                set {RPG최잘생::마나증가::%player's uuid%} to 0
+            set slot 46 of {_skillmenu최잘생::%player%} to blue stained glass named "&b마나증가" with lore "&e페시브 스킬" and "&f마나가 증가한다" and "현재레벨 : %{RPG최잘생::마나증가::%player's uuid%}%" and "&b➡&f스킬레벨과 마나가 1대1비율로 올라간다"
+            set slot 47 of {_skillmenu최잘생::%player%} to green stained glass pane named "마나증가 업그레이드" with lore "" and ""
+            #마나증가(걍 기본)
+            #
+
+            #
+            #리턴투한수연(걍 처음 시작하면 주는스킬)
+            set slot 37 of {_skillmenu최잘생::%player%} to oak door named "엘리베이터 순간이동" with lore "절체절명의 순간에 한수연 유니온 수학학원으로 이동한다." and "쿨타임 30분" and "&9MP 0 소모"
+            #리턴투한수연(걍 처음 시작하면 주는스킬)
+            #
+
+#1차
+
+#2차
+
+
+            #
+            #떄걸레스트(레벨에 따라 숫자만 바뀌는 스킬)
+            if {RPG최잘생::때껄레스트::%player's uuid%} is number:
+                set {범위::최잘생::때껄레스트::%player's uuid%} to {RPG최잘생::때껄레스트::%player's uuid%}
+                set {지속시간::최잘생::때껄레스트::%player's uuid%} to 3 + {RPG최잘생::때껄레스트::%player's uuid%}
+
+            if {RPG최잘생::때껄레스트::%player's uuid%} is set:
+                set slot 22 of {_skillmenu최잘생::%player%} to cake named "&b때껄레스트" with lore "&f학생들에게 쉬는시간을! 주변의 몬스터에게 %{지속시간::최잘생::때껄레스트::%player's uuid%}%초 스턴을 건다(쿨타임 20초)" and "&9MP 10 소모" and "&6범위 : %{범위::최잘생::때껄레스트::%player's uuid%}%" and "현재레벨 : %{RPG최잘생::때껄레스트::%player's uuid%}%" and "&b➡&f레벨 증가할때마다 범위 1 씩증가(기본 1)" and "&b➡&f레벨 증가할때 지속시간 1초씩증가" and "" and "&6클릭하고 움직여서 인벤으로 가져오기"
+            else if {RPG최잘생::때껄레스트::%player's uuid%} is not set:
+                set slot 22 of {_skillmenu최잘생::%player%} to cake named "&b때껄레스트" with lore "???"
+
+            set slot 23 of {_skillmenu최잘생::%player%} to green stained glass pane named "때껄레스트 업그레이드" with lore "가능이라 써있다면 눌러서 획득하세요!" and ""
+            #떄걸레스트(레벨에 따라 숫자만 바뀌는 스킬)
+            #
+
+            #
+            #프리투고
+            if {RPG최잘생::프리투고::%player's uuid%} is number:
+                set {_imshineedmp::프리투고::%player%} to {RPG최잘생::프리투고::%player's uuid%}*-1
+                set {needmp::최잘생::프리투고::%player's uuid%} to 30 + {_imshineedmp::프리투고::%player%}
+                set {범위::최잘생::프리투고::%player's uuid%} to 3 + {RPG최잘생::프리투고::%player's uuid%}
+
+            if {RPG최잘생::프리투고::%player's uuid%} is set:
+                set slot 31 of {_skillmenu최잘생::%player%} to wind charge named "&b프리투고" with lore "&f열심히한 학생들에게 하원을 허가한다! 특정범위안에있는 몬스터를 위로 날려버린다" and "쿨타임 120초" and "&9MP %{needmp::최잘생::프리투고::%player's uuid%}%소모" and "&6범위 : %{범위::최잘생::프리투고::%player's uuid%}% 더하기 8" and "현재레벨(상승효과레벨) : %{RPG최잘생::프리투고::%player's uuid%}%" and "&b➡&f레벨 증가할때마다 범위 1 씩증가(기본 1)" and "&b➡&f레벨 증가할때마다 필요마나 1 씩감소" and "" and "&6클릭하고 움직여서 인벤으로 가져오기"
+            else if {RPG최잘생::프리투고::%player's uuid%} is not set:
+                set slot 31 of {_skillmenu최잘생::%player%} to wind charge named "&b프리투고" with lore "???"
+
+            set slot 32 of {_skillmenu최잘생::%player%} to green stained glass pane named "프리투고 업그레이드" with lore "가능이라 써있다면 눌러서 획득하세요!" and ""
+            #프리투고(레벨에 따라 숫자만 바뀌는 스킬)
+            #
+
+            #
+            #내항외항항(범위,마나스킬이어서 액칼이랑같음!)
+            if {RPG최잘생::내항외항항::%player's uuid%} is number:
+                set {_imshineedmp::내항외항항::%player%} to {RPG최잘생::내항외항항::%player's uuid%}*-1
+                set {needmp::최잘생::내항외항항::%player's uuid%} to 11 + {_imshineedmp::내항외항항::%player%}
+                set {범위::최잘생::내항외항항::%player's uuid%} to 10 + {RPG최잘생::내항외항항::%player's uuid%}
+
+            if {RPG최잘생::내항외항항::%player's uuid%} is set:
+                set slot 40 of {_skillmenu최잘생::%player%} to oak log named "&b내항외항항" with lore "&f내항의곱은 외항의 곱과 같다는것을 이용해서 몬스터를 내항외항처럼 내 옆에 배치한다!!!" and "쿨타임 30초" and "&9MP %{needmp::최잘생::내항외항항::%player's uuid%}%소모" and "&6범위 : %{범위::최잘생::내항외항항::%player's uuid%}%" and "현재레벨 : %{RPG최잘생::내항외항항::%player's uuid%}%" and "&b➡&f레벨 증가할때마다 범위 1 씩증가(기본 10)" and "&b➡&f레벨 증가할때마다 필요마나 1 씩감소" and "" and "&6클릭하고 움직여서 인벤으로 가져오기"
+            else if {RPG최잘생::내항외항항::%player's uuid%} is not set:
+                set slot 40 of {_skillmenu최잘생::%player%} to oak log named "&b내항외항항" with lore "???"
+
+            set slot 41 of {_skillmenu최잘생::%player%} to green stained glass pane named "내항외항항 업그레이드" with lore "가능이라 써있다면 눌러서 획득하세요!" and ""
+            #내항외항항
+            #
+
+            #
+            #숙제풀세트
+            if {RPG최잘생::숙제풀세트::%player's uuid%} is number:
+                set {_imshineedmp::숙제풀세트::%player%} to {RPG최잘생::숙제풀세트::%player's uuid%}*-1
+                set {needmp::최잘생::숙제풀세트::%player's uuid%} to 11 + {_mshineedmp::숙제풀세트::%player%}
+                set {범위::최잘생::숙제풀세트::%player's uuid%} to 10 + {RPG최잘생::숙제풀세트::%player's uuid%}
+
+            if {RPG최잘생::숙제풀세트::%player's uuid%} is set:
+                set slot 49 of {_skillmenu최잘생::%player%} to oak log named "&b숙제풀세트" with lore "&f프리투고대신 프린트고!! 금도끼 은도끼권법으로 숙제를 내가 보는방향으로 발사한다(진짜 보는방향으로 나갑니다. 아래 보고있으면 아래로 갑니다.). 책 근처에있는 몬스터는 데미지를 입는다." and "쿨타임 30초" and "&9MP %{needmp::최잘생::숙제풀세트::%player's uuid%}%소모" and "&6범위 : %{범위::최잘생::숙제풀세트::%player's uuid%}%" and "현재레벨 : %{RPG최잘생::숙제풀세트::%player's uuid%}%" and "&b➡&f레벨 증가할때마다 범위 1 씩증가(기본 10)" and "&b➡&f레벨 증가할때마다 필요마나 1 씩감소" and "" and "&6클릭하고 움직여서 인벤으로 가져오기"
+            else if {RPG최잘생::숙제풀세트::%player's uuid%} is not set:
+                set slot 49 of {_skillmenu최잘생::%player%} to oak log named "&b숙제풀세트" with lore "???"
+
+            set slot 50 of {_skillmenu최잘생::%player%} to green stained glass pane named "숙제풀세트 업그레이드" with lore "가능이라 써있다면 눌러서 획득하세요!" and ""
+            #숙제풀세트
+            #
+
+#2차
+
+#3차
+
+
+            #
+            #먼작귀방어막(참고 레벨 25대 주는거)
+
+            if {RPG최잘생::먼작귀방어막::%player's uuid%} is set:
+                set slot 25 of {_skillmenu최잘생::%player%} to shield named "&b먼작귀방어막" with lore "&e액티브(온/오프) / 패시브스킬" and "&f스킬능력치에 따라서 채력부스트가 생긴다." and "" and "&b➡&f레벨 증가할때마다 생명력 강화 효과 높아짐" and "" and "&6클릭하고 움직여서 인벤으로 가져오기"
+            else if {RPG최잘생::먼작귀방어막::%player's uuid%} is not set:
+                set slot 25 of {_skillmenu최잘생::%player%} to shield named "&b먼작귀방어막" with lore "???"
+
+            set slot 26 of {_skillmenu최잘생::%player%} to green stained glass pane named "먼작귀방어막 업그레이드" with lore "가능이라 써있다면 눌러서 획득하세요!" and ""
+            #먼작귀방어막
+            #
+
+
+            #
+            #테이크아웃더마스크()
+            if {RPG최잘생::테이크아웃더마스크::%player's uuid%} is number:
+                set {_imshineedmp::테이크아웃더마스크::%player%} to {RPG최잘생::테이크아웃더마스크::%player's uuid%}*-1
+                set {needmp::최잘생::테이크아웃더마스크::%player's uuid%} to 10 + {_imshineedmp::테이크아웃더마스크::%player%}
+                set {밀어냄::최잘생::테이크아웃더마스크::%player's uuid%} to 3 + {RPG최잘생::테이크아웃더마스크::%player's uuid%}
+                set {범위::최잘생::테이크아웃더마스크::%player's uuid%} to 2 + {RPG최잘생::테이크아웃더마스크::%player's uuid%}
+
+            if {RPG최잘생::테이크아웃더마스크::%player's uuid%} is set:
+                set slot 33 of {_skillmenu최잘생::%player%} to ice named "&b테이크아웃더마스크" with lore "&f마스크를 벗어서 빛을 낸다" and "쿨타임 40초" and "&9MP %{needmp::최잘생::테이크아웃더마스크::%player's uuid%}%소모" and "&6밀어냄(기본 4) : %{밀어냄::최잘생::테이크아웃더마스크::%player's uuid%}%" and "범위 : %{범위::최잘생::테이크아웃더마스크::%player's uuid%}%" and "현재레벨 : %{RPG최잘생::테이크아웃더마스크::%player's uuid%}%" and "" and "&b➡&f레벨 증가할때마다 잘 밀려남" and "&b➡&f레벨 증가할때마다 범위증가" and "" and "&6클릭하고 움직여서 인벤으로 가져오기"
+            else if {RPG최잘생::테이크아웃더마스크::%player's uuid%} is not set:
+                set slot 33 of {_skillmenu최잘생::%player%} to ice named "&b테이크아웃더마스크" with lore "???"
+
+            set slot 34 of {_skillmenu최잘생::%player%} to green stained glass pane named "테이크아웃더마스크 업그레이드" with lore "가능이라 써있다면 눌러서 획득하세요!" and ""
+            #테이크아웃더마스크
+            #
+
+
+#            set slot 37 of {_skillmenu최잘생::%player%} to oak door named "&c개발중" with lore ""
+#           set slot 46 of {_skillmenu최잘생::%player%} to comparator named "&c개발중" with lore ""
+        #최잘생
+        else:
+            send "&c당신의 직업은 최잘생이 아닙니다!" to player
+
+        open {_skillmenu최잘생::%player%} to player
+
+
+#클릭
+#클릭
+on inventory click:
+    if event-inventory's name is "skillmenu최잘생":
+
+        if {RPG직업::%player's uuid%} is "최잘생":
+
+            if clicked slot is 2:
+                set player's level to {_level::%player%}
+                if {_level::%player%} >= 10:
+                    close player's inventory
+
+
+            if clicked slot is 19:
+                if {RPG최잘생::액스칼리버::%player's uuid%} is not number:
+                    cancel event
+                    execute console command "execute as %player% at @s run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 1 0.1 1"
+
+            if clicked slot is 20:
+                cancel event
+                if {RPG최잘생::액스칼리버::%player's uuid%} >= 1:
+                    if {sp::%player's uuid%} >= 1:
+                        if {RPG최잘생::액스칼리버::%player's uuid%} = 10:
+                            send "최대치를 찍었습니다"
+                        else:
+                            add 1 to {RPG최잘생::액스칼리버::%player's uuid%}
+                            send "&6업그레이드!!" to player
+                            remove 1 from {sp::%player's uuid%}
+                            close player's inventory
+                            wait for 1 tick
+                            execute player command "skillmenu"
+                    else:
+                        send "sp가 부족합니다" to player
+                else if {RPG최잘생::액스칼리버::%player's uuid%} is "가능":
+                    cancel event
+                    send "&a스킬을 획득했습니다!" to player
+                    set {RPG최잘생::액스칼리버::%player's uuid%} to 1
+                    close player's inventory
+                    wait for 1 tick
+                    execute player command "skillmenu"
+                else if {RPG최잘생::액스칼리버::%player's uuid%} is not set:
+                    send "아직 조건을 충족하는 레벨이 아닙니다!"
+                    execute console command "execute as %player% at @s run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 1 0.1 1"
+
+#{RPG최잘생::먼작귀슬로우::%player's uuid%}
+            if clicked slot is 28:
+                if {RPG최잘생::먼작귀슬로우::%player's uuid%} is not number:
+                    cancel event
+
+            if clicked slot is 29:
+                cancel event
+                if {RPG최잘생::먼작귀슬로우::%player's uuid%} >= 1:
+                    if {sp::%player's uuid%} >= 1:
+                        if {RPG최잘생::먼작귀슬로우::%player's uuid%} = 5:
+                            send "최대치를 찍었습니다"
+                        else:
+                            add 1 to {RPG최잘생::먼작귀슬로우::%player's uuid%}
+                            send "&6업그레이드!!" to player
+                            remove 1 from {sp::%player's uuid%}
+                            close player's inventory
+                            wait for 1 tick
+                            execute player command "skillmenu최잘생"
+                    else:
+                        send "sp가 부족합니다" to player
+                else if {RPG최잘생::먼작귀슬로우::%player's uuid%} is "가능":
+                    cancel event
+                    send "&a스킬을 획득했습니다!" to player
+                    set {RPG최잘생::먼작귀슬로우::%player's uuid%} to 1
+                    close player's inventory
+                    wait for 1 tick
+                    execute player command "skillmenu최잘생"
+                else if {RPG최잘생::먼작귀슬로우::%player's uuid%} is not set:
+                    send "아직 조건을 충족하는 레벨이 아닙니다!"
+                    execute console command "execute as %player% at @s run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 1 0.1 1"
+                    
+#{RPG최잘생::마나증가::%player's uuid%}
+            if clicked slot is 46:
+                cancel event
+                send "패시브 스킬 가져다가 뭐하려는지 정말 궁금하군요라고 제작자가 말합니다" to player
+
+            if clicked slot is 47:
+                cancel event
+                if {sp::%player's uuid%} >= 1:
+                    if {RPG최잘생::마나증가::%player's uuid%} = 10:
+                        send "최대치를 찍었습니다"
+                    else:
+                        add 1 to {RPG최잘생::마나증가::%player's uuid%}
+                        send "&6업그레이드!!" to player
+                        remove 1 from {sp::%player's uuid%}
+                        if {RPG최잘생::마나증가::%player's uuid%} is number:
+                            add {RPG최잘생::마나증가::%player's uuid%} to {maxmp::%player's uuid%}
+                        close player's inventory
+                        wait for 1 tick
+                        execute player command "skillmenu최잘생"
+                else:
+                    send "sp가 부족합니다" to player
+
+#1차
+
+#2차
+            if clicked slot is 22:
+                if {RPG최잘생::때껄레스트::%player's uuid%} is not number:
+                    cancel event
+                    execute console command "execute as %player% at @s run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 1 0.1 1"
+
+            if clicked slot is 23:
+                cancel event
+                if {RPG최잘생::때껄레스트::%player's uuid%} >= 1:
+                    if {sp::%player's uuid%} >= 1:
+                        if {RPG최잘생::때껄레스트::%player's uuid%} = 10:
+                            send "최대치를 찍었습니다"
+                        else:
+                            add 1 to {RPG최잘생::때껄레스트::%player's uuid%}
+                            send "&6업그레이드!!" to player
+                            remove 1 from {sp::%player's uuid%}
+                            close player's inventory
+                            wait for 1 tick
+                            execute player command "skillmenu"
+                    else:
+                        send "sp가 부족합니다" to player
+                else if {RPG최잘생::때껄레스트::%player's uuid%} is "가능":
+                    cancel event
+                    send "&a스킬을 획득했습니다!" to player
+                    set {RPG최잘생::때껄레스트::%player's uuid%} to 1
+                    close player's inventory
+                    wait for 1 tick
+                    execute player command "skillmenu"
+                else if {RPG최잘생::때껄레스트::%player's uuid%} is not set:
+                    send "아직 조건을 충족하는 레벨이 아닙니다!"
+                    execute console command "execute as %player% at @s run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 1 0.1 1"
+
+#{RPG최잘생::프리투고::%player's uuid%}
+            if clicked slot is 31:
+                if {RPG최잘생::프리투고::%player's uuid%} is not number:
+                    cancel event
+                    execute console command "execute as %player% at @s run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 1 0.1 1"
+
+            if clicked slot is 32:
+                cancel event
+                if {RPG최잘생::프리투고::%player's uuid%} >= 1:
+                    if {sp::%player's uuid%} >= 1:
+                        if {RPG최잘생::프리투고::%player's uuid%} = 5:
+                            send "최대치를 찍었습니다"
+                        else:
+                            add 1 to {RPG최잘생::프리투고::%player's uuid%}
+                            send "&6업그레이드!!" to player
+                            remove 1 from {sp::%player's uuid%}
+                            close player's inventory
+                            wait for 1 tick
+                            execute player command "skillmenu"
+                    else:
+                        send "sp가 부족합니다" to player
+                else if {RPG최잘생::프리투고::%player's uuid%} is "가능":
+                    cancel event
+                    send "&a스킬을 획득했습니다!" to player
+                    set {RPG최잘생::프리투고::%player's uuid%} to 1
+                    close player's inventory
+                    wait for 1 tick
+                    execute player command "skillmenu"
+                else if {RPG최잘생::프리투고::%player's uuid%} is not set:
+                    send "아직 조건을 충족하는 레벨이 아닙니다!"
+                    execute console command "execute as %player% at @s run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 1 0.1 1"
+
+#{RPG최잘생::내항외항항::%player's uuid%}
+            if clicked slot is 40:
+                if {RPG최잘생::내항외항항::%player's uuid%} is not number:
+                    cancel event
+                    execute console command "execute as %player% at @s run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 1 0.1 1"
+
+            if clicked slot is 41:
+                cancel event
+                if {RPG최잘생::내항외항항::%player's uuid%} >= 1:
+                    if {sp::%player's uuid%} >= 1:
+                        if {RPG최잘생::내항외항항::%player's uuid%} = 10:
+                            send "최대치를 찍었습니다"
+                        else:
+                            add 1 to {RPG최잘생::내항외항항::%player's uuid%}
+                            send "&6업그레이드!!" to player
+                            remove 1 from {sp::%player's uuid%}
+                            close player's inventory
+                            wait for 1 tick
+                            execute player command "skillmenu"
+                    else:
+                        send "sp가 부족합니다" to player
+                else if {RPG최잘생::내항외항항::%player's uuid%} is "가능":
+                    cancel event
+                    send "&a스킬을 획득했습니다!" to player
+                    set {RPG최잘생::내항외항항::%player's uuid%} to 1
+                    close player's inventory
+                    wait for 1 tick
+                    execute player command "skillmenu"
+                else if {RPG최잘생::내항외항항::%player's uuid%} is not set:
+                    send "아직 조건을 충족하는 레벨이 아닙니다!"
+                    execute console command "execute as %player% at @s run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 1 0.1 1"
+
+#{RPG최잘생::숙제풀세트::%player's uuid%}
+            if clicked slot is 49:
+                if {RPG최잘생::숙제풀세트::%player's uuid%} is not number:
+                    cancel event
+                    execute console command "execute as %player% at @s run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 1 0.1 1"
+
+            if clicked slot is 50:
+                cancel event
+                if {RPG최잘생::숙제풀세트::%player's uuid%} >= 1:
+                    if {sp::%player's uuid%} >= 1:
+                        if {RPG최잘생::숙제풀세트::%player's uuid%} = 10:
+                            send "최대치를 찍었습니다"
+                        else:
+                            add 1 to {RPG최잘생::숙제풀세트::%player's uuid%}
+                            send "&6업그레이드!!" to player
+                            remove 1 from {sp::%player's uuid%}
+                            close player's inventory
+                            wait for 1 tick
+                            execute player command "skillmenu"
+                    else:
+                        send "sp가 부족합니다" to player
+                else if {RPG최잘생::숙제풀세트::%player's uuid%} is "가능":
+                    cancel event
+                    send "&a스킬을 획득했습니다!" to player
+                    set {RPG최잘생::숙제풀세트::%player's uuid%} to 1
+                    close player's inventory
+                    wait for 1 tick
+                    execute player command "skillmenu"
+                else if {RPG최잘생::숙제풀세트::%player's uuid%} is not set:
+                    send "아직 조건을 충족하는 레벨이 아닙니다!"
+                    execute console command "execute as %player% at @s run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 1 0.1 1"
+
+#2차
+
+#3차
+
+#{RPG최잘생::먼작귀방어막::%player's uuid%}
+            if clicked slot is 25:
+                if {RPG최잘생::먼작귀방어막::%player's uuid%} is not number:
+                    cancel event
+                    execute console command "execute as %player% at @s run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 1 0.1 1"
+
+            if clicked slot is 26:
+                cancel event
+                if {RPG최잘생::먼작귀방어막::%player's uuid%} >= 1:
+                    if {sp::%player's uuid%} >= 1:
+                        if {RPG최잘생::먼작귀방어막::%player's uuid%} = 4:
+                            send "최대치를 찍었습니다"
+                        else:
+                            add 1 to {RPG최잘생::먼작귀방어막::%player's uuid%}
+                            send "&6업그레이드!!" to player
+                            remove 1 from {sp::%player's uuid%}
+                            close player's inventory
+                            wait for 1 tick
+                            execute player command "skillmenu"
+                    else:
+                        send "sp가 부족합니다" to player
+                else if {RPG최잘생::먼작귀방어막::%player's uuid%} is "가능":
+                    cancel event
+                    send "&a스킬을 획득했습니다!" to player
+                    set {RPG최잘생::먼작귀방어막::%player's uuid%} to 1
+                    close player's inventory
+                    wait for 1 tick
+                    execute player command "skillmenu"
+                else if {RPG최잘생::먼작귀방어막::%player's uuid%} is not set:
+                    send "아직 조건을 충족하는 레벨이 아닙니다!"
+                    execute console command "execute as %player% at @s run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 1 0.1 1"
+
+#{RPG최잘생::테이크아웃더마스크::%player's uuid%}
+            if clicked slot is 33:
+                if {RPG최잘생::테이크아웃더마스크::%player's uuid%} is not number:
+                    cancel event
+                    execute console command "execute as %player% at @s run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 1 0.1 1"
+
+            if clicked slot is 34:
+                cancel event
+                if {RPG최잘생::테이크아웃더마스크::%player's uuid%} >= 1:
+                    if {sp::%player's uuid%} >= 1:
+                        if {RPG최잘생::테이크아웃더마스크::%player's uuid%} = 10:
+                            send "최대치를 찍었습니다"
+                        else:
+                            add 1 to {RPG최잘생::테이크아웃더마스크::%player's uuid%}
+                            send "&6업그레이드!!" to player
+                            remove 1 from {sp::%player's uuid%}
+                            close player's inventory
+                            wait for 1 tick
+                            execute player command "skillmenu"
+                    else:
+                        send "sp가 부족합니다" to player
+                else if {RPG최잘생::테이크아웃더마스크::%player's uuid%} is "가능":
+                    cancel event
+                    send "&a스킬을 획득했습니다!" to player
+                    set {RPG최잘생::테이크아웃더마스크::%player's uuid%} to 1
+                    close player's inventory
+                    wait for 1 tick
+                    execute player command "skillmenu"
+                else if {RPG최잘생::테이크아웃더마스크::%player's uuid%} is not set:
+                    send "아직 조건을 충족하는 레벨이 아닙니다!"
+                    execute console command "execute as %player% at @s run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 1 0.1 1"

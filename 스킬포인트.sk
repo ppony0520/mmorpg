@@ -1,0 +1,10 @@
+on death of monster:
+    add 0.01 to {sp::%attacker's uuid%}
+    add 0.01 to {stat::%attacker's uuid%}
+    send "%{stat::%attacker's uuid%}% %{sp::%attacker's uuid%}%" to ops
+    send "LV : %attacker's level%" to attacker
+
+#디버딩용
+command /sp늘려늘려짜장면:
+    trigger:
+        set {sp::%player's uuid%} to 10

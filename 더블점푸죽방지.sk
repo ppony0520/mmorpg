@@ -1,0 +1,6 @@
+on damage of player:
+	if damage was caused by fall:
+		if {더블점프중::%victim%} is set:
+			cancel event
+			delete {더블점프중::%victim%}
+			send action bar "&6더블점프의 가호를 받아 낙뎀을 받지 않습니다" to victim

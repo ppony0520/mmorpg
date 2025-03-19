@@ -1,0 +1,21 @@
+command /쿨타임삭제:
+    trigger:
+        delete {쿨타임::최잘생::액스칼리버::%player%}
+        
+command /최잘생삭제 <text> <text>:
+    trigger:
+        if arg 1 is "삭제":
+            if arg 2 is not "미나증가":
+                delete {RPG최잘생::%arg 2%::%player's uuid%}
+                send "&c삭제중"
+            else if arg 2 is "마나증가":
+                send "&c삭제중"
+                wait for 1 second
+                delete {RPG최잘생::마나증가::%player's uuid%}
+            else:
+                send "뭘삭제할건데요 (때껄레스트 ,  액스칼리버 , 먼작귀슬로우 , 마나증가(변수1로만드는거임))" to player
+
+command /맥스랑일반마나설정 <number>:
+    trigger:
+        set {maxmp::%player's uuid%} to arg 1
+        set {mp::%player's uuid%} to arg 1

@@ -1,0 +1,62 @@
+command /rpgjob:
+    trigger:
+        set {_rpgjob} to chest inventory with 4 rows named "RPG직업 정하기!"
+        set slot 0 of {_rpgjob} to yellow stained glass pane named "주요직업" with lore ""
+        set slot 1 of {_rpgjob} to oak sign named "최잘생" with lore "서울에서 제일로 유명한 수학학원의 원장이 될 수 있는 기회! 가장 완벽하게 수학을 가르친다." and " &6<대사>&3아니 민쏭! 거기선 반비례를 써야지!!!"
+        set slot 2 of {_rpgjob} to brewing stand named "&c&l개발중 &f슈퍼한의사" with lore "경상남도 진주에서 가장 유명한 한의사가 돼보자! 주변 플레이어를 치료하고, 몬스터를 한의기술로 끝장내보자!" and "&6<대사>&3어 갱아, 선우 아니아니 서준이좀 데려와라"
+        set slot 3 of {_rpgjob} to book named "&c&l개발중 &f박교장" with lore "진주여고에서 제일로 유명했던 교장선생님이 돼보자! 학생들을 가르치며 쌓은 노하우로 말안듣는 몬스터들을 공부로 혼내준다! 참고로 수학교육이 기가막히다." and "&6<대사>&3143 x 50을 기가막히게 빠르게 하는 방법을 알려줄게, 143을 쉬운수인 150으로 만들고 50을 곱하고 150-143은 7이니까 50x7을 150x50에서 빼면돼"
+        set slot 8 of {_rpgjob} to red stained glass named "&c직업 때려치기" with lore "&a나중에 다시 정할 수 있습니다"
+
+        set slot 9 of {_rpgjob} to black stained glass pane named "직업정하기" with lore ""
+        set slot 10 of {_rpgjob} to black stained glass pane named "직업정하기" with lore ""
+        set slot 11 of {_rpgjob} to black stained glass pane named "직업정하기" with lore ""
+        set slot 12 of {_rpgjob} to black stained glass pane named "직업정하기" with lore ""
+        set slot 13 of {_rpgjob} to black stained glass pane named "직업정하기" with lore ""
+        set slot 14 of {_rpgjob} to black stained glass pane named "직업정하기" with lore ""
+        set slot 15 of {_rpgjob} to black stained glass pane named "직업정하기" with lore ""
+        set slot 16 of {_rpgjob} to black stained glass pane named "직업정하기" with lore ""
+        set slot 17 of {_rpgjob} to black stained glass pane named "직업정하기" with lore ""
+        open {_rpgjob} to player
+
+#ㅁㅁㅁㅁㅁa
+#깃그냥터미널?
+#
+on inventory click:
+    if event-inventory's name is "RPG직업 정하기!":
+        cancel event
+
+        if clicked slot is 1:
+            if {RPG직업::%player's uuid%} is "최잘생":
+                send "이미 이 직업입니다!" to player
+                execute console command "playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 1 0.2 1"
+            else:
+                set {RPG직업::%player's uuid%} to "최잘생"
+                set {maxmp::%player's uuid%} to 100 
+                set {mp::%player's uuid%} to 100
+                send "&b직업이 &e'&6최잘생&e'&b으로 변경됐습니다!"
+                stop
+
+        if clicked slot is 2:
+            if {RPG직업::%player's uuid%} is "원창한의원":
+                send "이미 이 직업입니다!" to player
+                execute console command "playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 1 0.2 1"
+            else:
+                set {RPG직업::%player's uuid%} to "원창한의원"
+                send "&b직업이 &e'&6슈퍼한의사&e'&b으로 변경됐습니다!"
+                stop
+
+        if clicked slot is 3:
+            if {RPG직업::%player's uuid%} is "박교장":
+                send "이미 이 직업입니다!" to player
+                execute console command "playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 1 0.2 1"
+            else:
+                set {RPG직업::%player's uuid%} to "박교장"
+                send "&b직업이 &e'&6뱍교장&e'&b으로 변경됐습니다!"
+                stop
+
+        if clicked slot is 8:
+            if {RPG직업::%player's uuid%} is set:
+                delete {RPG직업::%player's uuid%}
+            else:
+                send "&c이미 무직입니다" to player
+

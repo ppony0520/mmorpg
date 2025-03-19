@@ -1,0 +1,4 @@
+every 10 second:
+    loop all players:
+        if {RPG최잘생::액스칼리버::%loop-player's uuid%} is not set:
+            delete {범위::최잘생::액스칼리버::%loop-player's uuid%}

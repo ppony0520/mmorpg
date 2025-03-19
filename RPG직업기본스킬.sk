@@ -1,0 +1,8 @@
+on right click holding blue stained glass:
+    if event-item's name is "&9마나포션":
+        cancel event
+        send "&9마나를 회복했습니다" to player
+        remove 1 of blue stained glass named "&9마나포션" from player's inventory
+        set {mp::%player's uuid%} to {maxmp::%player's uuid%}
+        execute console command "execute as %player% at @s run playsound minecraft:entity.wandering_trader.drink_potion master @a ~ ~ ~ 100000000000 1 1"
+##        execute console command "scoreboard players operation %player% MP = %player% maxMP"
