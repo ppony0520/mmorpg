@@ -177,7 +177,7 @@ on right click holding shield:
             execute console command "execute as %player% at @s run playsound minecraft:block.enchantment_table.use master %player% ~ ~ ~ 1 0.7 1"
             send "&e먼작귀방어막이 꺼졌습니다." to player
 
-#{RPG최잘생::액스칼리버::%player's uuid%}
+#{RPG최잘생::테이크아웃더마스크::%player's uuid%}
 on right click holding ice:
     if event-item's name is "&b테이크아웃더마스크":
         cancel event
