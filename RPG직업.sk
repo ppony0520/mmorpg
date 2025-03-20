@@ -18,7 +18,7 @@ command /rpgjob:
         set slot 17 of {_rpgjob} to black stained glass pane named "직업정하기" with lore ""
         open {_rpgjob} to player
 
-#ㅁㅁㅁㅁㅁaaaaaa
+#ㅁㅁㅁㅁㅁaaaaaasss
 #깃그냥터미널?
 #
 on inventory click:
