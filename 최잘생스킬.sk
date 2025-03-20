@@ -147,7 +147,7 @@ on right click holding oak log:
             cancel event
             send "&c스킬을 사용하기위한 MP가 부족합니다" to player
 
-#loop 10 times:
+#loop 10 times:이건 루프문
 #    if {_num} is not set:
 #        set {_num} to 1
 #    else if {_num} > {범위::최잘생::숙제풀세트::%player's uuid%}:
