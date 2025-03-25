@@ -1,19 +1,26 @@
-on script load:
-	broadcast ""
-	broadcast "                              &7&o( %script% ) &7&o시스템이 리로드되었습니다."
-	broadcast "          원본스크립트는 아글님이 작성하셨습니다. 하지만 제게임에 맞춰서 제가 조금 스크립트를 변형했습니다  &7&oCopyright © 2020. 아글(ageul) All rights reserved."
-	broadcast ""
+#on script load:
+#                             &7&o( %script% ) &7&o시스템이 리로드되었습니다."
+#          진짜 초원본스크립트는 아글님이 작성하셨습니다. 내가 이걸 왜 주석했는지 알아? 그냥 유튭에 찾으면 많이 나오는데 저작권 한게 좀 그래 그리고 내가 그냥 내 게임에 맞춰서 아예 뜯음. 하지만 제게임에 맞춰서 제가 조금 스크립트를 변형했습니다  &7&oCopyright © 2020. 아글(ageul) All rights reserved."
+
 options:
-	제작자: 아글(AGEUL) - 아글#0318
+#	쌩 원본 제작자: 아글(AGEUL) - 아글#0318
 	Boolean:true
+#많이 뜯어 고침
 on jump:
 	if {RPG직업::%player's uuid%} is set:
-		player is sneaking
-		if {@Boolean} is true:
+		if player is sneaking:
 			push player forwards at speed 1
 			push player upwards at speed 1
 			set {더블점프중::%player%} to "점프중"
-		if {@Boolean} is false:
-			send title "" with subtitle "&c&L%script%스크립트가 활성화 되지 않았습니다&O!" to player for 1 seconds with fadein 5 tick and fade out 5 tick
 
-#
+#여기부터 내가 처음으로 만듬
+on jump:
+	if {점프중::%player%} is not set:
+		set {점프중::%player%} to true
+		wait for 3 second
+		delete {점프중::%player%}
+	if {점프중::%player%} is set:
+		push player forwards at speed 1
+		push player upwards at speed 1
+		delete {점프중::%player%}
+		set {더블점프중::%player%} to "점프중"

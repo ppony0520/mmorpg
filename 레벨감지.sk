@@ -90,3 +90,14 @@ every 10 second:
                     send subtitle "&f자세한 내용은 &3/skillmenu &f를 눌러 확인하세요!" to loop-player
                     wait for 3 second
                     send action bar "&b최잘생 &7- &b테이크아웃더마스크" to loop-player
+            if {레벨::%loop-player's uuid%} >= 35:
+                if {RPG최잘생::삐삐리포빠삐리포::%loop-player's uuid%} is not set:
+                    set {RPG최잘생::삐삐리포빠삐리포::%loop-player's uuid%} to "가능"
+                    send "%{레벨::%loop-player's uuid%}%" to ops
+                    send action bar "&6스킬잠금해제!" to loop-player
+                    send title "&e스킬잠금해제!" to loop-player
+                    send subtitle "&b최잘생 &7- &b삐삐리포빠삐리포" to loop-player
+                    wait for 2 second
+                    send subtitle "&f자세한 내용은 &3/skillmenu &f를 눌러 확인하세요!" to loop-player
+                    wait for 3 second
+                    send action bar "&b최잘생 &7- &b삐삐리포빠삐리포" to loop-player
