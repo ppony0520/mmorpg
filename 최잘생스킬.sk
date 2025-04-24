@@ -212,14 +212,14 @@ on right click holding crafter:
                 execute console command "execute as %player% at @s run summon minecraft:armor_stand ~ ~ ~ {Invisible:true,Invulnerable:true,NoBasePlate:true,CustomNameVisible:true,CustomName:'{""text"":""삐삐리포빠삐리....""}',Tags:[""choi_pipiripo_imshi_%player%""]}"
                 loop 36 times:
                     execute console command "execute as @e[tag=choi_pipiripo_imshi_%player%] at @s run tp @s ~ ~ ~ ~10 0"
-                    execute console command "execute as @e[tag=choi_pipiripo_imshi_%player%] at @s run particle minecraft:dragon_breath ^ ^0.5 ^3 0 0 0 0 5 normal %player%"
+                    execute console command "execute as @e[tag=choi_pipiripo_imshi_%player%] at @s run particle minecraft:dragon_breath ^ ^0.5 ^3 0 0 0 0 5 normal %player%"   #얘가보고있는곳 3 뒤에 파티클을 해라
                     wait for 0.05 second
                 loop 36 times:
                     execute console command "execute as @e[tag=choi_pipiripo_imshi_%player%] at @s run tp @s ~ ~ ~ ~10 0"
-                    execute console command "execute as @e[tag=choi_pipiripo_imshi_%player%] at @s run particle minecraft:dragon_breath ^ ^%{범위::최잘생::삐삐리포빠삐리포::%player's uuid%}% ^3 0 0 0 0 5 normal %player%"
+                    execute console command "execute as @e[tag=choi_pipiripo_imshi_%player%] at @s run particle minecraft:dragon_breath ^ ^0.5 ^%{범위::최잘생::삐삐리포빠삐리포::%player's uuid%}% 0 0 0 0 50 normal %player%"
                     wait for 0.05 second
                 execute console command "kill @e[tag=choi_pipiripo_imshi_%player%]"
-                execute console command "execute as %player% at @s run execute as @e[distance=..%{범위::최잘생::삐삐리포빠삐리포::%player's uuid%}%] at @s run damage @s %{대미지::최잘생::삐삐리포빠삐리포::%player's uuid%}% minecraft:player_attack by %player%"
+                execute console command "execute as %player% at @s run execute as @e[distance=..%{범위::최잘생::삐삐리포빠삐리포::%player's uuid%}%,type=!item_display,type=!block_display,type=!text_display,type=!experience_orb,type=!player] at @s run damage @s %{대미지::최잘생::삐삐리포빠삐리포::%player's uuid%}% minecraft:player_attack by %player%"
                 wait for 10 second
                 delete {쿨타임::최잘생::삐삐리포빠삐리포::%player%}
                 send "남은쿨 : %{쿨타임::최잘생::삐삐리포빠삐리포::%player%}% 쿨타임해제" to player
