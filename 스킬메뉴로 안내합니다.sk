@@ -1,6 +1,6 @@
 command skillmenu:
     trigger:
-        if {RPG직업::%player's uuid%} is "최잘생":
+        if {RPG현재직업::%player's uuid%} is "최잘생":
             close player's inventory
             wait for 1 tick
             execute player command "skillmenu최잘생"

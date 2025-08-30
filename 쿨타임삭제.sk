@@ -2,6 +2,10 @@ command /쿨타임삭제:
     trigger:
         delete {쿨타임::최잘생::액스칼리버::%player%}
         
+command /전체쿨타임삭제:
+    trigger:
+        delete {쿨타임::*}
+
 command /최잘생삭제 <text> <text>:
     trigger:
         if arg 1 is "삭제":

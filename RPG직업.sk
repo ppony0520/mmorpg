@@ -26,37 +26,37 @@ on inventory click:
         cancel event
 
         if clicked slot is 1:
-            if {RPG직업::%player's uuid%} is "최잘생":
+            if {RPG현재직업::%player's uuid%} is "최잘생":
                 send "이미 이 직업입니다!" to player
                 execute console command "playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 1 0.2 1"
             else:
-                set {RPG직업::%player's uuid%} to "최잘생"
+                set {RPG현재직업::%player's uuid%} to "최잘생"
                 set {maxmp::%player's uuid%} to 100 
                 set {mp::%player's uuid%} to 100
                 send "&b직업이 &e'&6최잘생&e'&b으로 변경됐습니다!"
                 stop
 
         if clicked slot is 2:
-            if {RPG직업::%player's uuid%} is "원창한의원":
+            if {RPG현재직업::%player's uuid%} is "원창한의원":
                 send "이미 이 직업입니다!" to player
                 execute console command "playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 1 0.2 1"
             else:
-                set {RPG직업::%player's uuid%} to "원창한의원"
+                set {RPG현재직업::%player's uuid%} to "원창한의원"
                 send "&b직업이 &e'&6슈퍼한의사&e'&b으로 변경됐습니다!"
                 stop
 
         if clicked slot is 3:
-            if {RPG직업::%player's uuid%} is "박교장":
+            if {RPG현재직업::%player's uuid%} is "박교장":
                 send "이미 이 직업입니다!" to player
                 execute console command "playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 1 0.2 1"
             else:
-                set {RPG직업::%player's uuid%} to "박교장"
+                set {RPG현재직업::%player's uuid%} to "박교장"
                 send "&b직업이 &e'&6뱍교장&e'&b으로 변경됐습니다!"
                 stop
 
         if clicked slot is 8:
-            if {RPG직업::%player's uuid%} is set:
-                delete {RPG직업::%player's uuid%}
+            if {RPG현재직업::%player's uuid%} is set:
+                delete {RPG현재직업::%player's uuid%}
             else:
                 send "&c이미 무직입니다" to player
 

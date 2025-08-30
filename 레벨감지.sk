@@ -1,10 +1,10 @@
 every 10 second:
     loop all players:
         set {레벨::%loop-player's uuid%} to loop-player's level
-        if {RPG직업::%loop-player's uuid%} is "최잘생":
+        if {RPG현재직업::%loop-player's uuid%} is "최잘생":
             if {레벨::%loop-player's uuid%} >= 1:
-                if {RPG최잘생::액스칼리버::%loop-player's uuid%} is not set:
-                    set {RPG최잘생::액스칼리버::%loop-player's uuid%} to "가능"
+                if {스킬::%loop-player%::%{현재캐릭터번호::%loop-player%}%::최잘생::액스칼리버::래밸} is not set:
+                    set {스킬::%loop-player%::%{현재캐릭터번호::%loop-player%}%::최잘생::액스칼리버::래밸} to "가능"
                     send "%{레벨::%loop-player's uuid%}%" to ops
                     send action bar "&6스킬잠금해제!" to loop-player
                     send title "&e스킬잠금해제!" to loop-player
@@ -14,8 +14,8 @@ every 10 second:
                     wait for 3 second
                     send action bar "&b최잘생 &7- &6액스칼리버 &&8(&9MP 10소모&8)" to loop-player
             if {레벨::%loop-player's uuid%} >= 2:
-                if {RPG최잘생::먼작귀슬로우::%loop-player's uuid%} is not set:
-                    set {RPG최잘생::먼작귀슬로우::%loop-player's uuid%} to "가능"
+                if {스킬::%loop-player%::%{현재캐릭터번호::%loop-player%}%::최잘생::먼작귀슬로우::래밸} is not set:
+                    set {스킬::%loop-player%::%{현재캐릭터번호::%loop-player%}%::최잘생::먼작귀슬로우::래밸} to "가능"
                     send "%{레벨::%loop-player's uuid%}%" to ops
                     send action bar "&6스킬잠금해제!" to loop-player
                     send title "&e스킬잠금해제!" to loop-player
@@ -25,8 +25,8 @@ every 10 second:
                     wait for 3 second
                     send action bar "&b최잘생 &7- &6먼작귀슬로우 &&8(&9MP 2소모&8)" to loop-player
             if {레벨::%loop-player's uuid%} >= 10:
-                if {RPG최잘생::때껄레스트::%loop-player's uuid%} is not set:
-                    set {RPG최잘생::때껄레스트::%loop-player's uuid%} to "가능"
+                if {스킬::%loop-player%::%{현재캐릭터번호::%loop-player%}%::최잘생::때껄레스트::래밸} is not set:
+                    set {스킬::%loop-player%::%{현재캐릭터번호::%loop-player%}%::최잘생::때껄레스트::래밸} to "가능"
                     send "%{레벨::%loop-player's uuid%}%" to ops
                     send action bar "&6스킬잠금해제!" to loop-player
                     send title "&e스킬잠금해제!" to loop-player
@@ -36,8 +36,8 @@ every 10 second:
                     wait for 3 second
                     send action bar "&b최잘생 &7- &6때걸레스트 &&8(&9MP 10소모&8)" to loop-player
             if {레벨::%loop-player's uuid%} >= 15:
-                if {RPG최잘생::프리투고::%loop-player's uuid%} is not set:
-                    set {RPG최잘생::프리투고::%loop-player's uuid%} to "가능"
+                if {스킬::%loop-player%::%{현재캐릭터번호::%loop-player%}%::최잘생::프리투고::래밸} is not set:
+                    set {스킬::%loop-player%::%{현재캐릭터번호::%loop-player%}%::최잘생::프리투고::래밸} to "가능"
                     send "%{레벨::%loop-player's uuid%}%" to ops
                     send action bar "&6스킬잠금해제!" to loop-player
                     send title "&e스킬잠금해제!" to loop-player
@@ -47,8 +47,8 @@ every 10 second:
                     wait for 3 second
                     send action bar "&b최잘생 &7- &6프리투고 &&8(&9MP 10소모&8)" to loop-player
             if {레벨::%loop-player's uuid%} >= 21:
-                if {RPG최잘생::숙제풀세트::%loop-player's uuid%} is not set:
-                    set {RPG최잘생::숙제풀세트::%loop-player's uuid%} to "가능"
+                if {스킬::%loop-player%::%{현재캐릭터번호::%loop-player%}%::최잘생::숙제풀세트::래밸} is not set:
+                    set {스킬::%loop-player%::%{현재캐릭터번호::%loop-player%}%::최잘생::숙제풀세트::래밸} to "가능"
                     send "%{레벨::%loop-player's uuid%}%" to ops
                     send action bar "&6스킬잠금해제!" to loop-player
                     send title "&e스킬잠금해제!" to loop-player
@@ -58,8 +58,8 @@ every 10 second:
                     wait for 3 second
                     send action bar "&b최잘생 &7- &b숙제풀세트" to loop-player
             if {레벨::%loop-player's uuid%} >= 20:
-                if {RPG최잘생::내항외항항::%loop-player's uuid%} is not set:
-                    set {RPG최잘생::내항외항항::%loop-player's uuid%} to "가능"
+                if {스킬::%loop-player%::%{현재캐릭터번호::%loop-player%}%::최잘생::내항외항항::래밸} is not set:
+                    set {스킬::%loop-player%::%{현재캐릭터번호::%loop-player%}%::최잘생::내항외항항::래밸} to "가능"
                     send "%{레벨::%loop-player's uuid%}%" to ops
                     send action bar "&6스킬잠금해제!" to loop-player
                     send title "&e스킬잠금해제!" to loop-player
@@ -69,8 +69,8 @@ every 10 second:
                     wait for 3 second
                     send action bar "&b최잘생 &7- &b내항외항항" to loop-player
             if {레벨::%loop-player's uuid%} >= 25:
-                if {RPG최잘생::먼작귀방어막::%loop-player's uuid%} is not set:
-                    set {RPG최잘생::먼작귀방어막::%loop-player's uuid%} to "가능"
+                if {스킬::%loop-player%::%{현재캐릭터번호::%loop-player%}%::최잘생::먼작귀방어막::래밸} is not set:
+                    set {스킬::%loop-player%::%{현재캐릭터번호::%loop-player%}%::최잘생::먼작귀방어막::래밸} to "가능"
                     send "%{레벨::%loop-player's uuid%}%" to ops
                     send action bar "&6스킬잠금해제!" to loop-player
                     send title "&e스킬잠금해제!" to loop-player
@@ -80,8 +80,8 @@ every 10 second:
                     wait for 3 second
                     send action bar "&b최잘생 &7- &먼작귀방어막" to loop-player
             if {레벨::%loop-player's uuid%} >= 30:
-                if {RPG최잘생::테이크아웃더마스크::%loop-player's uuid%} is not set:
-                    set {RPG최잘생::테이크아웃더마스크::%loop-player's uuid%} to "가능"
+                if {스킬::%loop-player%::%{현재캐릭터번호::%loop-player%}%::최잘생::테이크아웃더마스크::래밸} is not set:
+                    set {스킬::%loop-player%::%{현재캐릭터번호::%loop-player%}%::최잘생::테이크아웃더마스크::래밸} to "가능"
                     send "%{레벨::%loop-player's uuid%}%" to ops
                     send action bar "&6스킬잠금해제!" to loop-player
                     send title "&e스킬잠금해제!" to loop-player
@@ -91,8 +91,8 @@ every 10 second:
                     wait for 3 second
                     send action bar "&b최잘생 &7- &b테이크아웃더마스크" to loop-player
             if {레벨::%loop-player's uuid%} >= 35:
-                if {RPG최잘생::삐삐리포빠삐리포::%loop-player's uuid%} is not set:
-                    set {RPG최잘생::삐삐리포빠삐리포::%loop-player's uuid%} to "가능"
+                if {스킬::%loop-player%::%{현재캐릭터번호::%loop-player%}%::최잘생::삐삐리포빠삐리포::래밸} is not set:
+                    set {스킬::%loop-player%::%{현재캐릭터번호::%loop-player%}%::최잘생::삐삐리포빠삐리포::래밸} to "가능"
                     send "%{레벨::%loop-player's uuid%}%" to ops
                     send action bar "&6스킬잠금해제!" to loop-player
                     send title "&e스킬잠금해제!" to loop-player
@@ -101,3 +101,14 @@ every 10 second:
                     send subtitle "&f자세한 내용은 &3/skillmenu &f를 눌러 확인하세요!" to loop-player
                     wait for 3 second
                     send action bar "&b최잘생 &7- &b삐삐리포빠삐리포" to loop-player
+            if {레벨::%loop-player's uuid%} >= 36:
+                if {스킬::%loop-player%::%{현재캐릭터번호::%loop-player%}%::최잘생::금도끼은도끼방어::래밸} is not set:
+                    set {스킬::%loop-player%::%{현재캐릭터번호::%loop-player%}%::최잘생::금도끼은도끼방어::래밸} to "가능"
+                    send "%{레벨::%loop-player's uuid%}%" to ops
+                    send action bar "&6스킬잠금해제!" to loop-player
+                    send title "&e스킬잠금해제!" to loop-player
+                    send subtitle "&b최잘생 &7- &b금도끼은도끼방어" to loop-player
+                    wait for 2 second
+                    send subtitle "&f자세한 내용은 &3/skillmenu &f를 눌러 확인하세요!" to loop-player
+                    wait for 3 second
+                    send action bar "&b최잘생 &7- &b금도끼은도끼방어" to loop-player

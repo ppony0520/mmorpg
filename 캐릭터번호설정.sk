@@ -1,0 +1,4 @@
+command /캐릭터번호설정 <number>:
+    trigger:
+        if player is op:
+            set {현재캐릭터번호::%player%} to arg 1
