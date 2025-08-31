@@ -1,3 +1,7 @@
+on script load:
+    set {직업스킬목록::최잘생::*} to "액스칼리버" and "먼작귀슬로우" and "때껄레스트" and "프리투고" and "내항외항항" and "숙제풀세트" and "먼작귀방어막" and "테이크아웃더마스크" and "삐삐리포빠삐리포" and "금도끼은도끼방어"
+    send "스킬을 스킬 목록에 저장했습니다. 확인해주세요 스킬 > %{직업스킬목록::최잘생::*}%" to console
+
 command skillmenu최잘생:
     trigger:
         #최잘생

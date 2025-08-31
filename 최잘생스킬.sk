@@ -1,256 +1,234 @@
-on click holding oak log:
-    if event-item's name is "&b액스칼리버":
-        cancel event
-        set {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::액스칼리버::범위} to 0 + {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::액스칼리버::래밸}
-        send "%{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::액스칼리버::래밸}% %{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::액스칼리버::범위}%" to player
-        if {mp::%player's uuid%} >= {needmp::최잘생::액스칼리버::%player's uuid%}:
-            if {쿨타임::최잘생::액스칼리버::%player%} is not set:
-                set {_범위::최잘생::액스칼리버::%player%} to {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::액스칼리버::범위} + 1
-                cancel event
-                set {쿨타임::최잘생::액스칼리버::%player%} to 2
-                remove {needmp::최잘생::액스칼리버::%player's uuid%} from {mp::%player's uuid%}
-                execute console command "execute as %player% at @s run particle minecraft:flame ~ ~0.1 ~ 0 0 %{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::액스칼리버::범위}% 0 150 normal"
-                execute console command "execute as %player% at @s run playsound minecraft:item.firecharge.use master @s ~ ~ ~ 1 0.8 1"
-                wait for 0.5 second
-                execute console command "execute as %player% at @s run particle minecraft:flame ~ ~0.1 ~ %{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::액스칼리버::범위}% 0 0 0 150 normal"
-                execute console command "execute as %player% at @s run playsound minecraft:item.firecharge.use master @s ~ ~ ~ 1 0.8 1"
-                wait for 0.5 second
-                execute console command "execute as %player% at @s run execute positioned ~ ~ ~ as @e[distance=..%{_범위::최잘생::액스칼리버::%player%}%,type=!minecraft:experience_orb,type=!minecraft:player,type=!minecraft:text_display,type=!minecraft:block_display,type=!minecraft:item_display] at @s run damage @s 8 minecraft:magic by %player%"
-                execute console command "execute as %player% at @s run playsound minecraft:entity.generic.explode master @s ~ ~ ~ 1 1 1"
-                send "남은쿨 : %{쿨타임::최잘생::액스칼리버::%player%}%" to player
-                #스킬쿨타임-(0.5+0.5)
-                wait for 1 second
-                delete {쿨타임::최잘생::액스칼리버::%player%}
-                send "남은쿨 : %{쿨타임::최잘생::액스칼리버::%player%}%" to player
-            else:
-                send "&c스킬을 사용하기전에 %{쿨타임::최잘생::액스칼리버::%player%}%초를 기다려야 합니다" to player
-        else if {mp::%player's uuid%} < {needmp::최잘생::액스칼리버::%player's uuid%}:
-            cancel event
-            send "&c스킬을 사용하기위한 MP가 부족합니다" to player
-
-#{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::먼작귀슬로우::래밸}
-#{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::먼작귀슬로우::래밸}
-on click holding feather:
-    if event-item's name is "&b먼작귀슬로우":
-        cancel event
-        if {mp::%player's uuid%} >= 1:
-            set {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::먼작귀슬로우::지속시간} to 3 + {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::먼작귀슬로우::래밸}
-            remove 2 from {mp::%player's uuid%}
-            execute console command "effect give %player% slow_falling %{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::먼작귀슬로우::지속시간}% 10"
-            execute console command "execute as %player% at @s run playsound entity.wind_charge.wind_burst master %player% ~ ~ ~ 1 0.1 1"
-
-# {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::때껄레스트::래밸}
-on click holding cake:
-    if event-item's name is "&b때껄레스트":
-        cancel event
-#        send "zz" to player
-        if {mp::%player's uuid%} >= 10:
-#            send "1" to player
-            if {쿨타임::최잘생::때껄레스트::%player%} is not set:
-#                send "aaaa" to player
-                set {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::때껄레스트::범위} to {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::때껄레스트::래밸} + 5
-                send "%{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::때껄레스트::범위}%" to player
-                set {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::때껄레스트::지속시간} to 3 + {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::때껄레스트::래밸}
-                cancel event
-                set {쿨타임::최잘생::때껄레스트::%player%} to 20
-                remove 10 from {mp::%player's uuid%}
-                execute console command "execute as %player% at @s run execute positioned ~ ~ ~ as @e[distance=..%{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::때껄레스트::범위}%,type=!minecraft:experience_orb,type=!minecraft:player,type=!minecraft:text_display,type=!minecraft:block_display,type=!minecraft:item_display] at @s run effect give @s minecraft:slowness %{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::때껄레스트::지속시간}% 255"
-                execute console command "execute as %player% at @s run execute positioned ~ ~ ~ as @e[distance=..%{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::때껄레스트::범위}%,type=!minecraft:experience_orb,type=!minecraft:player,type=!minecraft:text_display,type=!minecraft:block_display,type=!minecraft:item_display] at @s run damage @s 2 minecraft:player_attack by %player%"
-                execute console command "playsound minecraft:entity.player.hurt_freeze master %player% ~ ~ ~ 1 1 1"
-                execute console command "playsound minecraft:entity.firework_rocket.blast master %player% ~ ~ ~ 1 1 1"
-                wait for 20 second
-                send "남은쿨 : %{쿨타임::최잘생::때껄레스트::%player%}%" to player
-                delete {쿨타임::최잘생::때껄레스트::%player%}
-                send "남은쿨 : %{쿨타임::최잘생::때껄레스트::%player%}%" to player
-            else:
-                send "&c스킬을 사용하기전에 %{쿨타임::최잘생::때껄레스트::%player%}%초를 기다려야 합니다" to player
-        else:#얘를 그냥 else로 떄리면 분명히 나옴
-            cancel event
-#            send "aaa" to ops
-            send "&c스킬을 사용하기위한 MP가 부족합니다" to player
-
-#{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::프리투고::래밸}
-on right click holding wind charge:
-    if event-item's name is "&b프리투고":
-        cancel event
-        set {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::프리투고::범위} to 3 + {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::프리투고::래밸}
-        if {mp::%player's uuid%} >= {needmp::최잘생::프리투고::%player's uuid%}:
-            if {쿨타임::최잘생::프리투고::%player%} is not set:
-                set {_범위::최잘생::프리투고::%player%} to {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::프리투고::범위} + 5
-                cancel event
-                set {쿨타임::최잘생::프리투고::%player%} to 20
-                remove {needmp::최잘생::프리투고::%player's uuid%} from {mp::%player's uuid%}
-                execute console command "execute as %player% at @s run execute positioned ~ ~ ~ as @e[distance=..%{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::프리투고::범위}%,type=!minecraft:experience_orb,type=!minecraft:player,type=!minecraft:text_display,type=!minecraft:block_display,type=!minecraft:item_display] at @s run effect give @s minecraft:levitation %{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::프리투고::래밸}% 10"
-                execute console command "execute as %player% at @s run execute positioned ~ ~ ~ as @e[distance=..%{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::프리투고::범위}%,type=!minecraft:experience_orb,type=!minecraft:player,type=!minecraft:text_display,type=!minecraft:block_display,type=!minecraft:item_display] at @s run particle minecraft:explosion ~ ~0.9 ~ 0 0 0 0.00000000000001 1 normal"
-                execute console command "execute as %player% at @s run playsound entity.firework_rocket.launch master @s ~ ~ ~ 1 0.8 1"
-                wait for 20 second
-                delete {쿨타임::최잘생::프리투고::%player%}
-                send "남은쿨 : %{쿨타임::최잘생::프리투고::%player%}% 쿨타임해제" to ops
-            else:
-                send "&c스킬을 사용하기전에 %{쿨타임::최잘생::프리투고::%player%}%초를 기다려야 합니다" to player
-        else if {mp::%player's uuid%} < {needmp::최잘생::프리투고::%player's uuid%}:
-            cancel event
-            send "&c스킬을 사용하기위한 MP가 부족합니다" to player
-
-#{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::내항외항항::래밸}
-on right click holding oak log:
-    if event-item's name is "&b내항외항항":
-        cancel event
-        set {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::내항외항항::범위} to 0 + {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::내항외항항::래밸}
-        if {mp::%player's uuid%} >= {needmp::최잘생::내항외항항::%player's uuid%}:
-            if {쿨타임::최잘생::내항외항항::%player%} is not set:
-                set {_범위::최잘생::내항외항항::%player%} to {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::내항외항항::범위} + 3
-                cancel event
-                set {쿨타임::최잘생::내항외항항::%player%} to 30
-                remove {needmp::최잘생::내항외항항::%player's uuid%} from {mp::%player's uuid%}
-                execute console command "execute as %player% at @s run tp @e[distance=..10,type=!minecraft:experience_orb,type=!minecraft:player,type=!minecraft:text_display,type=!minecraft:block_display,type=!minecraft:item_display] ^4 ^ ^"
-                wait for 0.5 second
-                execute console command "execute as %player% at @s run tp @e[distance=..%{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::내항외항항::범위}%,type=!minecraft:experience_orb,type=!minecraft:player,type=!minecraft:text_display,type=!minecraft:block_display,type=!minecraft:item_display] ^-4 ^ ^"
-                wait for 0.2 second
-                execute console command "execute as %player% at @s run execute as @e[distance=..%{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::내항외항항::범위}%,type=!minecraft:experience_orb,type=!minecraft:player,type=!minecraft:text_display,type=!minecraft:block_display,type=!minecraft:item_display] at @s run damage @s 5 minecraft:player_attack by %player%"
-                execute console command "execute as %player% at @s run playsound minecraft:item.firecharge.use master @s ~ ~ ~ 1 2 1"
-                wait for 30 second
-                delete {쿨타임::최잘생::내항외항항::%player%}
-                send "남은쿨 : %{쿨타임::최잘생::내항외항항::%player%}% 쿨타임해제" to player
-            else:
-                send "&c스킬을 사용하기전에 %{쿨타임::최잘생::내항외항항::%player%}%초를 기다려야 합니다" to player
-        else if {mp::%player's uuid%} < {needmp::최잘생::내항외항항::%player's uuid%}:
-            cancel event
-            send "&c스킬을 사용하기위한 MP가 부족합니다" to player
-            
-#{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::숙제풀세트::래밸}
-on right click holding oak log:
-    if event-item's name is "&b숙제풀세트":
-        cancel event
-        set {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::숙제풀세트::범위} to 10 + {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::숙제풀세트::래밸}
-        if {mp::%player's uuid%} >= {needmp::최잘생::숙제풀세트::%player's uuid%}:
-            if {쿨타임::최잘생::숙제풀세트::%player%} is not set:
-                set {_범위::최잘생::숙제풀세트::%player%} to {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::숙제풀세트::범위} + 3
-                cancel event
-                set {쿨타임::최잘생::숙제풀세트::%player%} to 30
-                remove {needmp::최잘생::숙제풀세트::%player's uuid%} from {mp::%player's uuid%}
-#                execute console command "execute as %player% at @s run tp %player% ~ ~ ~ 0 0"
-                execute console command "execute as %player% at @s run summon minecraft:item_display ~ ~ ~ {item: {count: 1, id: ""minecraft:book""},Tags:[""choi_homeworkfullset_%player%""]}"
-                loop 10 times:
-                    if {_num} is not set:
-                        set {_num} to 1
-                    else if {_num} > {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::숙제풀세트::범위} + 2:
-                        send "루프끝" to ops
-                    else:
-                        wait for 0.5 second
-                        execute console command "execute as @e[tag=choi_homeworkfullset_%player%] at @s run execute as @e[distance=..5,type=!minecraft:experience_orb,type=!minecraft:player,type=!minecraft:text_display,type=!minecraft:block_display,type=!minecraft:item_display,type=!item] at @s run damage @s 7 minecraft:arrow by %player%"
-                        execute console command "execute as %player% at @s run tp @e[tag=choi_homeworkfullset_%player%] ^ ^1 ^%{_num}%"
-                        execute console command "execute as %player% at @s run playsound minecraft:item.book.page_turn master %player% ~ ~ ~ 1 1 1"
-                    add 1 to {_num}
-                wait for 0.1 second
-                execute console command "kill @e[tag=choi_homeworkfullset_%player%]"
-                wait for 1 second
-                delete {쿨타임::최잘생::숙제풀세트::%player%}
-                send "%{쿨타임::최잘생::숙제풀세트::%player%}% 쿨타임해제" to player
-            else:
-                send "&c스킬을 사용하기전에 %{쿨타임::최잘생::숙제풀세트::%player%}%초를 기다려야 합니다" to player
-        else if {mp::%player's uuid%} < {needmp::최잘생::숙제풀세트::%player's uuid%}:
-            cancel event
-            send "&c스킬을 사용하기위한 MP가 부족합니다" to player
-
-#loop 10 times:이건 루프문
-#    if {_num} is not set:
-#        set {_num} to 1
-#    else if {_num} > {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::숙제풀세트::범위}:
-#        send "루프끝" to ops
-#    else:
-#        execute console command "tp @e[tag=choi_homeworkfullset_%player%] ^ ^ ^%{_num}%"
-#    add 1 to {_num}#구상완료
-
-#{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::숙제풀세트::범위} 가능한 범위가 될때까지 앞으로 착착착착 나가야함
-#최잘생의 숙제풀세트를 임시 구상함
-#/execute positioned ^ ^ ^2 at @e[distance=3] run damage @s
-#summon minecraft:item_display ^ ^ ^2 {item: {count: 1, id: "minecraft:book"},Tags:["choi_homeworkfullset_%player%"]}
-#하고 다음에 저 테그가진애를 앞으로 2블록 보내 그리고 거기에 데미지를 잎혀
-
-#{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::먼작귀방어막::래밸}
-on right click holding shield:
-    if event-item's name is "&b먼작귀방어막":
-        cancel event
-        if {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::먼작귀방어막::온오프} is not set:
-            set {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::먼작귀방어막::온오프} to true
-            execute console command "effect give %player% health_boost infinite %{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::먼작귀방어막::래밸}% false"
-            execute console command "execute as %player% at @s run playsound minecraft:block.enchantment_table.use master %player% ~ ~ ~ 1 1 1"
-            send "&e먼작귀방어막이 켜졌습니다." to player
-        else if {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::먼작귀방어막::온오프} is true:
-            delete {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::먼작귀방어막::온오프}
-            execute console command "effect clear %player% health_boost"
-            execute console command "execute as %player% at @s run playsound minecraft:block.enchantment_table.use master %player% ~ ~ ~ 1 0.7 1"
-            send "&e먼작귀방어막이 꺼졌습니다." to player
-
-#{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::테이크아웃더마스크::래밸}
-on right click holding ice:
-    if event-item's name is "&b테이크아웃더마스크":
-        cancel event
-        if {mp::%player's uuid%} >= {needmp::최잘생::테이크아웃더마스크::%player's uuid%}:
-            if {쿨타임::최잘생::테이크아웃더마스크::%player%} is not set:
-                set {쿨타임::최잘생::테이크아웃더마스크::%player%} to 30
-                remove {needmp::최잘생::테이크아웃더마스크::%player's uuid%} from {mp::%player's uuid%}
-                execute console command "execute as %player% at @s run tp @e[distance=..%{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::테이크아웃더마스크::범위}%,type=!minecraft:experience_orb,type=!minecraft:player,type=!minecraft:text_display,type=!minecraft:block_display,type=!minecraft:item_display] ^-%{밀어냄::최잘생::테이크아웃더마스크::%player's uuid%}% ^ ^"
-                execute console command "execute as %player% at @s run particle minecraft:end_rod ~ ~ ~ 1 1 1 0 500 normal %player%"
-                execute console command "execute as %player% at @s run playsound minecraft:item.trident.return master %player% ~ ~ ~ 10000 1.2 1"
-                wait for 30 second
-                delete {쿨타임::최잘생::테이크아웃더마스크::%player%}
-                send "남은쿨 : %{쿨타임::최잘생::테이크아웃더마스크::%player%}% 쿨타임해제" to player
-            else:
-                send "&c스킬을 사용하기전에 %{쿨타임::최잘생::테이크아웃더마스크::%player%}%초를 기다려야 합니다" to player
-        else if {mp::%player's uuid%} < {needmp::최잘생::테이크아웃더마스크::%player's uuid%}:
-            cancel event
-            send "&c스킬을 사용하기위한 MP가 부족합니다" to player
-
-#{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::삐삐리포빠삐리포::래밸}
-on right click holding crafter:
-    if event-item's name is "&b삐삐리포빠삐리포":
-        cancel event
-        if {mp::%player's uuid%} >= {needmp::최잘생::삐삐리포빠삐리포::%player's uuid%}:
-            if {쿨타임::최잘생::삐삐리포빠삐리포::%player%} is not set:
-                set {쿨타임::최잘생::삐삐리포빠삐리포::%player%} to 10
-                remove {needmp::최잘생::삐삐리포빠삐리포::%player's uuid%} from {mp::%player's uuid%}
-                execute console command "execute as %player% at @s run summon minecraft:armor_stand ~ ~ ~ {Invisible:true,Invulnerable:true,NoBasePlate:true,CustomNameVisible:true,CustomName:'{""text"":""삐삐리포빠삐리....""}',Tags:[""choi_pipiripo_imshi_%player%""]}"
-                loop 36 times:
-                    execute console command "execute as @e[tag=choi_pipiripo_imshi_%player%] at @s run tp @s ~ ~ ~ ~10 0"
-                    execute console command "execute as @e[tag=choi_pipiripo_imshi_%player%] at @s run particle minecraft:dragon_breath ^ ^0.5 ^3 0 0 0 0 5 normal %player%"   #얘가보고있는곳 3 뒤에 파티클을 해라
-                    wait for 0.05 second
-                loop 36 times:
-                    execute console command "execute as @e[tag=choi_pipiripo_imshi_%player%] at @s run tp @s ~ ~ ~ ~10 0"
-                    execute console command "execute as @e[tag=choi_pipiripo_imshi_%player%] at @s run particle minecraft:dragon_breath ^ ^0.5 ^%{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::삐삐리포빠삐리포::범위}% 0 0 0 0 50 normal %player%"
-                    wait for 0.05 second
-                execute console command "kill @e[tag=choi_pipiripo_imshi_%player%]"
-                execute console command "execute as %player% at @s run execute as @e[distance=..%{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::삐삐리포빠삐리포::범위}%,type=!item_display,type=!block_display,type=!text_display,type=!experience_orb,type=!player] at @s run damage @s %{대미지::최잘생::삐삐리포빠삐리포::%player's uuid%}% minecraft:player_attack by %player%"
-                wait for 10 second
-                delete {쿨타임::최잘생::삐삐리포빠삐리포::%player%}
-                send "남은쿨 : %{쿨타임::최잘생::삐삐리포빠삐리포::%player%}% 쿨타임해제" to player
-            else:
-                send "&c스킬을 사용하기전에 %{쿨타임::최잘생::삐삐리포빠삐리포::%player%}%초를 기다려야 합니다" to player
-        else if {mp::%player's uuid%} < {needmp::최잘생::삐삐리포빠삐리포::%player's uuid%}:
-            cancel event
-            send "&c스킬을 사용하기위한 MP가 부족합니다" to player
-
-#{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::금도끼은도끼방어::래밸}
-on right click holding iron axe:
-    if event-item's name is "&b금도끼은도끼방어":
-        cancel event
-        if {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::금도끼은도끼방어::온오프} is not set:
-            set {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::금도끼은도끼방어::온오프} to true
-            send "&e금도끼은도끼방어가 켜졌습니다" to player
-        if {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::금도끼은도끼방어::온오프} is set:
-            delete {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::금도끼은도끼방어::온오프}
-            send "&e금도끼은도끼방어가 꺼졌습니다" to player
-
-on damage:
-    if {스킬::%victim%::%{현재캐릭터번호::%victim%}%::최잘생::금도끼은도끼방어::온오프} is set:
-        if damage >= 10:
-            chance of {확률::%victim%::최잘생::금도끼은도끼방어}:
-                cancel event
-                execute console command "execute as %victim% at @s run playsound minecraft:entity.experience_orb.pickup master @s ~ ~ ~ 1 1.5 1"
-
-#{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::금도끼은도끼방어::래밸}
-
-command /변수나나나:
+command /최잘생스킬사용 [<text>]:
     trigger:
-        delete {쿨타임::최잘생::프리투고::%player%}
+        set {_skill::%player%} to arg-1
+        set {_job::%player%} to {RPG현재직업::%player%}
+        set {_charID::%player%} to {현재캐릭터번호::%player%}
+        send "%{_skill::%player%}% %{_job::%player%}% %{_charID::%player%}%" to player
+
+        set {_lv::%player%} to {스킬::%player%::%{현재캐릭터번호::%player%}%::%{RPG현재직업::%player%}%::%arg 1%::래밸}
+        send "%{스킬::%player%::%{_charID::%player%}%::%{_job::%player%}%::%{_skill::%player%}%::래밸}% %{스킬::%player%::%{현재캐릭터번호::%player%}%::%{RPG현재직업::%player%}%::%arg 1%::래밸}% %{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::먼작귀슬로우::래밸}%" to player
+        if {_lv::%player%} is not set:
+            send "&c%{_skill::%player%}%을 배운 적이 없습니다!"
+            stop
+        else if {_lv::%player%} <= 0:
+            send "&c%{_skill::%player%}%을 배운 적이 없습니다!"
+            stop
+        else if {_lv::%player%} is "가능":
+            send "&a당신이 %{_skill::%player%}%버튼을 어떻게 가지고 있는지는 모르겠지만, 당신은 이 스킬을 배울 수 있습니다!"
+            stop
+
+        if {직업스킬목록::%{_job::%player%}%::*} contains {_skill::%player%}:
+            #개별 스킬 효과 발동
+            if {_skill::%player%} is "액스칼리버":
+                set {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::액스칼리버::범위} to 0 + {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::액스칼리버::래밸}
+                send "%{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::액스칼리버::래밸}% %{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::액스칼리버::범위}%" to player
+                if {mp::%player's uuid%} >= {needmp::최잘생::액스칼리버::%player's uuid%}:
+                    if {쿨타임::최잘생::액스칼리버::%player%} is not set:
+                        set {_범위::최잘생::액스칼리버::%player%} to {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::액스칼리버::범위} + 1
+                        #cancel event
+                        set {쿨타임::최잘생::액스칼리버::%player%} to 2
+                        remove {needmp::최잘생::액스칼리버::%player's uuid%} from {mp::%player's uuid%}
+                        execute console command "execute as %player% at @s run particle minecraft:flame ~ ~0.1 ~ 0 0 %{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::액스칼리버::범위}% 0 150 normal"
+                        execute console command "execute as %player% at @s run playsound minecraft:item.firecharge.use master @s ~ ~ ~ 1 0.8 1"
+                        wait for 0.5 second
+                        execute console command "execute as %player% at @s run particle minecraft:flame ~ ~0.1 ~ %{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::액스칼리버::범위}% 0 0 0 150 normal"
+                        execute console command "execute as %player% at @s run playsound minecraft:item.firecharge.use master @s ~ ~ ~ 1 0.8 1"
+                        wait for 0.5 second
+                        execute console command "execute as %player% at @s run execute positioned ~ ~ ~ as @e[distance=..%{_범위::최잘생::액스칼리버::%player%}%,type=!minecraft:experience_orb,type=!minecraft:player,type=!minecraft:text_display,type=!minecraft:block_display,type=!minecraft:item_display] at @s run damage @s 8 minecraft:magic by %player%"
+                        execute console command "execute as %player% at @s run playsound minecraft:entity.generic.explode master @s ~ ~ ~ 1 1 1"
+                        send "남은쿨 : %{쿨타임::최잘생::액스칼리버::%player%}%" to player
+                        #스킬쿨타임-(0.5+0.5)
+                        wait for 1 second
+                        delete {쿨타임::최잘생::액스칼리버::%player%}
+                        send "남은쿨 : %{쿨타임::최잘생::액스칼리버::%player%}%" to player
+                    else:
+                        send "&c스킬을 사용하기전에 %{쿨타임::최잘생::액스칼리버::%player%}%초를 기다려야 합니다" to player
+                else if {mp::%player's uuid%} < {needmp::최잘생::액스칼리버::%player's uuid%}:
+                    #cancel event
+                    send "&c스킬을 사용하기위한 MP가 부족합니다" to player
+                stop
+
+            if {_skill::%player%} is "먼작귀슬로우":
+                if {mp::%player's uuid%} >= 1:
+                    set {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::먼작귀슬로우::지속시간} to 3 + {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::먼작귀슬로우::래밸}
+                    remove 2 from {mp::%player's uuid%}
+                    execute console command "effect give %player% slow_falling %{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::먼작귀슬로우::지속시간}% 10"
+                    execute console command "execute as %player% at @s run playsound entity.wind_charge.wind_burst master %player% ~ ~ ~ 1 0.1 1"
+                stop
+
+            if {_skill::%player%} is "때껄레스트":
+        #        send "zz" to player
+                if {mp::%player's uuid%} >= 10:
+        #            send "1" to player
+                    if {쿨타임::최잘생::때껄레스트::%player%} is not set:
+        #                send "aaaa" to player
+                        set {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::때껄레스트::범위} to {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::때껄레스트::래밸} + 5
+                        send "%{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::때껄레스트::범위}%" to player
+                        set {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::때껄레스트::지속시간} to 3 + {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::때껄레스트::래밸}
+                        #cancel event
+                        set {쿨타임::최잘생::때껄레스트::%player%} to 20
+                        remove 10 from {mp::%player's uuid%}
+                        execute console command "execute as %player% at @s run execute positioned ~ ~ ~ as @e[distance=..%{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::때껄레스트::범위}%,type=!minecraft:experience_orb,type=!minecraft:player,type=!minecraft:text_display,type=!minecraft:block_display,type=!minecraft:item_display] at @s run effect give @s minecraft:slowness %{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::때껄레스트::지속시간}% 255"
+                        execute console command "execute as %player% at @s run execute positioned ~ ~ ~ as @e[distance=..%{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::때껄레스트::범위}%,type=!minecraft:experience_orb,type=!minecraft:player,type=!minecraft:text_display,type=!minecraft:block_display,type=!minecraft:item_display] at @s run damage @s 2 minecraft:player_attack by %player%"
+                        execute console command "playsound minecraft:entity.player.hurt_freeze master %player% ~ ~ ~ 1 1 1"
+                        execute console command "playsound minecraft:entity.firework_rocket.blast master %player% ~ ~ ~ 1 1 1"
+                        wait for 20 second
+                        send "남은쿨 : %{쿨타임::최잘생::때껄레스트::%player%}%" to player
+                        delete {쿨타임::최잘생::때껄레스트::%player%}
+                        send "남은쿨 : %{쿨타임::최잘생::때껄레스트::%player%}%" to player
+                    else:
+                        send "&c스킬을 사용하기전에 %{쿨타임::최잘생::때껄레스트::%player%}%초를 기다려야 합니다" to player
+                else:#얘를 그냥 else로 떄리면 분명히 나옴
+                    #cancel event
+        #            send "aaa" to ops
+                    send "&c스킬을 사용하기위한 MP가 부족합니다" to player
+                stop
+
+            if {_skill::%player%} is "프리투고":
+                set {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::프리투고::범위} to 3 + {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::프리투고::래밸}
+                if {mp::%player's uuid%} >= {needmp::최잘생::프리투고::%player's uuid%}:
+                    if {쿨타임::최잘생::프리투고::%player%} is not set:
+                        set {_범위::최잘생::프리투고::%player%} to {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::프리투고::범위} + 5
+                        #cancel event
+                        set {쿨타임::최잘생::프리투고::%player%} to 20
+                        remove {needmp::최잘생::프리투고::%player's uuid%} from {mp::%player's uuid%}
+                        execute console command "execute as %player% at @s run execute positioned ~ ~ ~ as @e[distance=..%{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::프리투고::범위}%,type=!minecraft:experience_orb,type=!minecraft:player,type=!minecraft:text_display,type=!minecraft:block_display,type=!minecraft:item_display] at @s run effect give @s minecraft:levitation %{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::프리투고::래밸}% 10"
+                        execute console command "execute as %player% at @s run execute positioned ~ ~ ~ as @e[distance=..%{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::프리투고::범위}%,type=!minecraft:experience_orb,type=!minecraft:player,type=!minecraft:text_display,type=!minecraft:block_display,type=!minecraft:item_display] at @s run particle minecraft:explosion ~ ~0.9 ~ 0 0 0 0.00000000000001 1 normal"
+                        execute console command "execute as %player% at @s run playsound entity.firework_rocket.launch master @s ~ ~ ~ 1 0.8 1"
+                        wait for 20 second
+                        delete {쿨타임::최잘생::프리투고::%player%}
+                        send "남은쿨 : %{쿨타임::최잘생::프리투고::%player%}% 쿨타임해제" to ops
+                    else:
+                        send "&c스킬을 사용하기전에 %{쿨타임::최잘생::프리투고::%player%}%초를 기다려야 합니다" to player
+                else if {mp::%player's uuid%} < {needmp::최잘생::프리투고::%player's uuid%}:
+                    #cancel event
+                    send "&c스킬을 사용하기위한 MP가 부족합니다" to player
+                stop
+
+            if {_skill::%player%} is "내항외항항":
+                set {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::내항외항항::범위} to 0 + {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::내항외항항::래밸}
+                if {mp::%player's uuid%} >= {needmp::최잘생::내항외항항::%player's uuid%}:
+                    if {쿨타임::최잘생::내항외항항::%player%} is not set:
+                        set {_범위::최잘생::내항외항항::%player%} to {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::내항외항항::범위} + 3
+                        #cancel event
+                        set {쿨타임::최잘생::내항외항항::%player%} to 30
+                        remove {needmp::최잘생::내항외항항::%player's uuid%} from {mp::%player's uuid%}
+                        execute console command "execute as %player% at @s run tp @e[distance=..10,type=!minecraft:experience_orb,type=!minecraft:player,type=!minecraft:text_display,type=!minecraft:block_display,type=!minecraft:item_display] ^4 ^ ^"
+                        wait for 0.5 second
+                        execute console command "execute as %player% at @s run tp @e[distance=..%{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::내항외항항::범위}%,type=!minecraft:experience_orb,type=!minecraft:player,type=!minecraft:text_display,type=!minecraft:block_display,type=!minecraft:item_display] ^-4 ^ ^"
+                        wait for 0.2 second
+                        execute console command "execute as %player% at @s run execute as @e[distance=..%{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::내항외항항::범위}%,type=!minecraft:experience_orb,type=!minecraft:player,type=!minecraft:text_display,type=!minecraft:block_display,type=!minecraft:item_display] at @s run damage @s 5 minecraft:player_attack by %player%"
+                        execute console command "execute as %player% at @s run playsound minecraft:item.firecharge.use master @s ~ ~ ~ 1 2 1"
+                        wait for 30 second
+                        delete {쿨타임::최잘생::내항외항항::%player%}
+                        send "남은쿨 : %{쿨타임::최잘생::내항외항항::%player%}% 쿨타임해제" to player
+                    else:
+                        send "&c스킬을 사용하기전에 %{쿨타임::최잘생::내항외항항::%player%}%초를 기다려야 합니다" to player
+                else if {mp::%player's uuid%} < {needmp::최잘생::내항외항항::%player's uuid%}:
+                    #cancel event
+                    send "&c스킬을 사용하기위한 MP가 부족합니다" to player
+                stop
+
+            if {_skill::%player%} is "숙제풀세트":
+                set {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::숙제풀세트::범위} to 10 + {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::숙제풀세트::래밸}
+                if {mp::%player's uuid%} >= {needmp::최잘생::숙제풀세트::%player's uuid%}:
+                    if {쿨타임::최잘생::숙제풀세트::%player%} is not set:
+                        set {_범위::최잘생::숙제풀세트::%player%} to {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::숙제풀세트::범위} + 3
+                        #cancel event
+                        set {쿨타임::최잘생::숙제풀세트::%player%} to 30
+                        remove {needmp::최잘생::숙제풀세트::%player's uuid%} from {mp::%player's uuid%}
+        #                execute console command "execute as %player% at @s run tp %player% ~ ~ ~ 0 0"
+                        execute console command "execute as %player% at @s run summon minecraft:item_display ~ ~ ~ {item: {count: 1, id: ""minecraft:book""},Tags:[""choi_homeworkfullset_%player%""]}"
+                        loop 10 times:
+                            if {_num::%player%} is not set:
+                                set {_num::%player%} to 1
+                            else if {_num::%player%} > {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::숙제풀세트::범위} + 2:
+                                send "루프끝" to ops
+                            else:
+                                wait for 0.5 second
+                                execute console command "execute as @e[tag=choi_homeworkfullset_%player%] at @s run execute as @e[distance=..5,type=!minecraft:experience_orb,type=!minecraft:player,type=!minecraft:text_display,type=!minecraft:block_display,type=!minecraft:item_display,type=!item] at @s run damage @s 7 minecraft:arrow by %player%"
+                                execute console command "execute as %player% at @s run tp @e[tag=choi_homeworkfullset_%player%] ^ ^1 ^%{_num::%player%}%"
+                                execute console command "execute as %player% at @s run playsound minecraft:item.book.page_turn master %player% ~ ~ ~ 1 1 1"
+                            add 1 to {_num::%player%}
+                        wait for 0.1 second
+                        execute console command "kill @e[tag=choi_homeworkfullset_%player%]"
+                        wait for 1 second
+                        delete {쿨타임::최잘생::숙제풀세트::%player%}
+                        send "%{쿨타임::최잘생::숙제풀세트::%player%}% 쿨타임해제" to player
+                    else:
+                        send "&c스킬을 사용하기전에 %{쿨타임::최잘생::숙제풀세트::%player%}%초를 기다려야 합니다" to player
+                else if {mp::%player's uuid%} < {needmp::최잘생::숙제풀세트::%player's uuid%}:
+                    #cancel event
+                    send "&c스킬을 사용하기위한 MP가 부족합니다" to player
+                stop
+
+            if {_skill::%player%} is "먼작귀방어막":
+                if {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::먼작귀방어막::온오프} is not set:
+                    set {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::먼작귀방어막::온오프} to true
+                    execute console command "effect give %player% health_boost infinite %{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::먼작귀방어막::래밸}% false"
+                    execute console command "execute as %player% at @s run playsound minecraft:block.enchantment_table.use master %player% ~ ~ ~ 1 1 1"
+                    send "&e먼작귀방어막이 켜졌습니다." to player
+                else if {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::먼작귀방어막::온오프} is true:
+                    delete {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::먼작귀방어막::온오프}
+                    execute console command "effect clear %player% health_boost"
+                    execute console command "execute as %player% at @s run playsound minecraft:block.enchantment_table.use master %player% ~ ~ ~ 1 0.7 1"
+                    send "&e먼작귀방어막이 꺼졌습니다." to player
+                stop
+
+            if {_skill::%player%} is "테이크아웃더마스크":
+                if {mp::%player's uuid%} >= {needmp::최잘생::테이크아웃더마스크::%player's uuid%}:
+                    if {쿨타임::최잘생::테이크아웃더마스크::%player%} is not set:
+                        set {쿨타임::최잘생::테이크아웃더마스크::%player%} to 30
+                        remove {needmp::최잘생::테이크아웃더마스크::%player's uuid%} from {mp::%player's uuid%}
+                        execute console command "execute as %player% at @s run tp @e[distance=..%{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::테이크아웃더마스크::범위}%,type=!minecraft:experience_orb,type=!minecraft:player,type=!minecraft:text_display,type=!minecraft:block_display,type=!minecraft:item_display] ^-%{밀어냄::최잘생::테이크아웃더마스크::%player's uuid%}% ^ ^"
+                        execute console command "execute as %player% at @s run particle minecraft:end_rod ~ ~ ~ 1 1 1 0 500 normal %player%"
+                        execute console command "execute as %player% at @s run playsound minecraft:item.trident.return master %player% ~ ~ ~ 10000 1.2 1"
+                        wait for 30 second
+                        delete {쿨타임::최잘생::테이크아웃더마스크::%player%}
+                        send "남은쿨 : %{쿨타임::최잘생::테이크아웃더마스크::%player%}% 쿨타임해제" to player
+                    else:
+                        send "&c스킬을 사용하기전에 %{쿨타임::최잘생::테이크아웃더마스크::%player%}%초를 기다려야 합니다" to player
+                else if {mp::%player's uuid%} < {needmp::최잘생::테이크아웃더마스크::%player's uuid%}:
+                    #cancel event
+                    send "&c스킬을 사용하기위한 MP가 부족합니다" to player
+                stop
+
+            if {_skill::%player%} is "삐삐리포빠삐리포":
+                if {mp::%player's uuid%} >= {needmp::최잘생::삐삐리포빠삐리포::%player's uuid%}:
+                    if {쿨타임::최잘생::삐삐리포빠삐리포::%player%} is not set:
+                        set {쿨타임::최잘생::삐삐리포빠삐리포::%player%} to 10
+                        remove {needmp::최잘생::삐삐리포빠삐리포::%player's uuid%} from {mp::%player's uuid%}
+                        execute console command "execute as %player% at @s run summon minecraft:armor_stand ~ ~ ~ {Invisible:true,Invulnerable:true,NoBasePlate:true,CustomNameVisible:true,CustomName:'{""text"":""삐삐리포빠삐리....""}',Tags:[""choi_pipiripo_imshi_%player%""]}"
+                        loop 36 times:
+                            execute console command "execute as @e[tag=choi_pipiripo_imshi_%player%] at @s run tp @s ~ ~ ~ ~10 0"
+                            execute console command "execute as @e[tag=choi_pipiripo_imshi_%player%] at @s run particle minecraft:dragon_breath ^ ^0.5 ^3 0 0 0 0 5 normal %player%"   #얘가보고있는곳 3 뒤에 파티클을 해라
+                            wait for 0.05 second
+                        loop 36 times:
+                            execute console command "execute as @e[tag=choi_pipiripo_imshi_%player%] at @s run tp @s ~ ~ ~ ~10 0"
+                            execute console command "execute as @e[tag=choi_pipiripo_imshi_%player%] at @s run particle minecraft:dragon_breath ^ ^0.5 ^%{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::삐삐리포빠삐리포::범위}% 0 0 0 0 50 normal %player%"
+                            wait for 0.05 second
+                        execute console command "kill @e[tag=choi_pipiripo_imshi_%player%]"
+                        execute console command "execute as %player% at @s run execute as @e[distance=..%{스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::삐삐리포빠삐리포::범위}%,type=!item_display,type=!block_display,type=!text_display,type=!experience_orb,type=!player] at @s run damage @s %{대미지::최잘생::삐삐리포빠삐리포::%player's uuid%}% minecraft:player_attack by %player%"
+                        wait for 10 second
+                        delete {쿨타임::최잘생::삐삐리포빠삐리포::%player%}
+                        send "남은쿨 : %{쿨타임::최잘생::삐삐리포빠삐리포::%player%}% 쿨타임해제" to player
+                    else:
+                        send "&c스킬을 사용하기전에 %{쿨타임::최잘생::삐삐리포빠삐리포::%player%}%초를 기다려야 합니다" to player
+                else if {mp::%player's uuid%} < {needmp::최잘생::삐삐리포빠삐리포::%player's uuid%}:
+                    #cancel event
+                    send "&c스킬을 사용하기위한 MP가 부족합니다" to player
+
+            if {_skill::%player%} is "금도끼은도끼방어":
+                if {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::금도끼은도끼방어::온오프} is not set:
+                    set {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::금도끼은도끼방어::온오프} to true
+                    send "&e금도끼은도끼방어가 켜졌습니다" to player
+                if {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::금도끼은도끼방어::온오프} is set:
+                    delete {스킬::%player%::%{현재캐릭터번호::%player%}%::최잘생::금도끼은도끼방어::온오프}
+                    send "&e금도끼은도끼방어가 꺼졌습니다" to player
+
+
+        else:
+            send "&c이 직업은 %{_skill::%player%}% 스킬을 사용할 수 없거나, 스킬이 등록되지 않았습니다."
+            stop
+
+#        if {_skill::%player%} is "":
